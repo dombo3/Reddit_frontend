@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr minmax(max-content, 6fr) minmax(max-content, 3fr) 1fr;
+  grid-template-columns: 1fr max-content max-content 1fr;
   grid-template-rows: 300px 30px 200px 1fr 20px;
   grid-gap: 15px;
   background-color: rgb(238,238,238);
@@ -57,7 +57,7 @@ header {
   transform: translateY(-50%);
 }
 
-/** Main content **/
+/** Posts **/
 
 main.posts {
   grid-column: 2;
@@ -72,8 +72,7 @@ article.post {
 }
 
 .vote-box {
-  flex-grow: 1;
-  min-width: 100px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,10 +92,9 @@ article.post {
 }
 
 .content-box {
-  flex-grow: 6;
-  min-width: max-content;
   padding: 20px 20px 20px 0;
   font-weight: 100;
+  max-width: 500px;
 }
 
 .content-box .post-title {
@@ -112,6 +110,7 @@ article.post {
 .content-box .link {
   text-decoration: none;
   color: inherit;
+  margin-right: 10px;
 }
 
 /** Submit Button **/
