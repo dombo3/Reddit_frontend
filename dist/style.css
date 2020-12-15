@@ -1,0 +1,148 @@
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr minmax(max-content, 6fr) minmax(max-content, 3fr) 1fr;
+  grid-template-rows: 300px 30px 200px 1fr 20px;
+  grid-gap: 15px;
+  background-color: rgb(238,238,238);
+}
+
+/** Normalize button **/
+
+button {
+  font-size: 100%;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+}
+
+button:visited {
+  text-decoration: none;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/** Header **/ 
+
+header {
+  background-image: url(./img/space.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 5;
+  justify-content: center;
+  position: relative;
+}
+
+.title {
+  color: white;
+  letter-spacing: 2em;
+  text-align: center;
+}
+
+.sprite {
+  left: 5%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/** Main content **/
+
+main.posts {
+  grid-column: 2;
+  grid-row: 2 / span 3;
+}
+
+article.post {
+  display: flex;
+  color:  rgb(180,180,180);
+  background-color: #fff;
+  margin-bottom: 2px;
+}
+
+.vote-box {
+  flex-grow: 1;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upvote, .downvote {
+  width: 30px;
+  cursor: pointer;
+}
+
+.vote {
+  color: rgb(180,180,180);
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0;
+}
+
+.content-box {
+  flex-grow: 6;
+  min-width: max-content;
+  padding: 20px 20px 20px 0;
+  font-weight: 100;
+}
+
+.content-box .post-title {
+  margin: 0 0 0.3em 0;
+  color: rgb(51,51,51);
+  font-weight: 400;
+}
+
+.content-box .info {
+  margin: 0.3em 0;
+}
+
+.content-box .link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/** Submit Button **/
+
+button.submit {
+  border: none;
+  grid-column: 3 / 4;
+  color: #fff;
+  background-color: rgba(74,163,223);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+button.submit:hover {
+  background-color: rgb(74,163,223);
+}
+
+/** About **/
+
+.about {
+  grid-column: 3 / 4;
+  background-color: rgb(245,245,245);
+}
+
+.about .headline {
+  margin: 0;
+  padding: 10px;
+  font-weight: bolder;
+  background-color: rgb(251,251,251);
+}
+
+.about .topics {
+  padding: 0 20px;
+}
