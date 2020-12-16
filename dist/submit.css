@@ -60,6 +60,10 @@ input[type="url"]:invalid:not(:placeholder-shown) + .title-info {
   display: block;
 }
 
+input[type="text"]:focus:invalid {
+  outline: 1px solid red;
+}
+
 .title-info {
   color: rgb(180,180,180);
   font-size: 0.8em;

@@ -1,60 +1,75 @@
-import {API_URL, URL} from './config';
+import { API_URL, URL } from './config';
+import {elapsedDaysFrom} from './dateUtil';
+import postController from './postController';
 
-const main = document.querySelector('main.posts');
+render();
 
-getPosts();
+async function render() {
+  const main = document.querySelector('main.posts');
+  const submitButton = document.querySelector('.submit');
 
-function elapsedDaysFrom(timestamp) {
-  const fromDate = new Date(timestamp);
-  const currentDate = new Date();
-  const difference = currentDate - fromDate;
-  return Math.round(difference / 1000 / 60 / 60 / 24);
+  const posts = await postController.getAllPost();
+  const articles = posts.map(post => articleFrom(post));
+  articles.forEach(article => main.appendChild(article));
+  registerEventListenersFor(posts);
+  
+  submitButton.onclick = (e) => {
+    e.preventDefault();
+    location.href = URL + "/dist/submit.html";
+  }
 }
 
-document.querySelector('.submit').onclick = (e) => {
-  e.preventDefault();
-  location.href = URL + "/dist/submit.html";
-}
-
-function getPosts() {
-  fetch(API_URL + "/posts")
-    .then(response => response.json())
-    .then(posts => {
-      posts
-        .map(post => createPost(post.score, post.title, elapsedDaysFrom(post.timestamp), post.author || "anonymus"))
-        .forEach(post => main.appendChild(post));
+function registerEventListenersFor(posts) {
+  posts.forEach(post => {
+    const article = document.querySelector(`article[data-id="${post.id}"]`);
+    
+    const upVoteButton = article.querySelector(`.upvote`);
+    upVoteButton.addEventListener('click', (e) => {
+      postController.upVote(post.id).then(post => {
+          article.querySelector('.vote').innerText = post.score;
+        }
+      );
     });
+
+    const downVoteButton = article.querySelector(`.downvote`);
+    downVoteButton.addEventListener('click', (e) => {
+       postController.downVote(post.id).then(post => 
+        article.querySelector('.vote').innerText = post.score);
+    });
+  });
 }
 
-function createPost(vote, title, days, author) {
+function articleFrom(post) {
   const article = document.createElement('article');
   article.setAttribute('class', 'post');
-  
+  article.setAttribute('data-id', post.id);
+
   const div1 = document.createElement('div');
   div1.setAttribute('class', 'vote-box');
-  
+
   const img1 = document.createElement('img');
   img1.src = 'img/upvote.png';
   img1.classList.add('upvote');
-  
+
   const p1 = document.createElement('p');
   p1.setAttribute('class', 'vote');
-  p1.textContent = vote;
-  
+  p1.textContent = post.score;
+
   const img2 = document.createElement('img');
   img2.setAttribute('src', 'img/downvote.png');
   img2.setAttribute('class', 'downvote');
-  
+
   const div2 = document.createElement('div');
   div2.setAttribute('class', 'content-box');
 
   const h3 = document.createElement('h3');
   h3.setAttribute('class', 'post-title');
-  h3.textContent = title;
+  h3.textContent = post.title;
 
   const p2 = document.createElement('p');
   p2.setAttribute('class', 'info');
-  p2.textContent = `submitted ${days} days ago by ${author}`;
+  const days = elapsedDaysFrom(post.timestamp);
+  p2.textContent = `submitted ${days} days ago by ${post.author || "anonymus"}`;
 
   const a1 = document.createElement('a');
   a1.setAttribute('class', 'link');
@@ -69,7 +84,7 @@ function createPost(vote, title, days, author) {
   div1.appendChild(img1);
   div1.appendChild(p1);
   div1.appendChild(img2);
-  
+
   div2.appendChild(h3);
   div2.appendChild(p2);
   div2.appendChild(a1);

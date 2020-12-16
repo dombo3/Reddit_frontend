@@ -6,7 +6,9 @@ document.querySelector('#button-post-submit').onclick = async (e) => {
   const title = document.querySelector('#title');
   const url = document.querySelector('#url');
 
-  if (title.checkValidity() && url.checkValidity()) {
+  title.focus();
+
+  if (document.forms[0].checkValidity()) {
     const data = {
       title: title.value,
       url: url.value,
