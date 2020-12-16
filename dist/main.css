@@ -1,0 +1,75 @@
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr max-content max-content 1fr;
+  grid-template-rows: 300px 30px 200px 1fr 20px;
+  grid-gap: 15px;
+  background-color: rgb(238,238,238);
+}
+
+/** Normalize button **/
+
+button {
+  font-size: 100%;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+}
+
+button:visited {
+  text-decoration: none;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/** Reddit button **/
+
+button {
+  color: #fff;
+  background-color: rgba(74,163,223);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+/** Header **/ 
+
+header {
+  background-image: url(./img/space.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 5;
+  justify-content: center;
+  position: relative;
+}
+
+.title {
+  color: white;
+  letter-spacing: 2em;
+  text-align: center;
+  text-indent: 2em;
+}
+
+.subtitle {
+  color: white;
+  font-size: 0.8em;
+  word-spacing: 0.5em;
+  text-align: center;
+}
+
+.sprite {
+  left: 5%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

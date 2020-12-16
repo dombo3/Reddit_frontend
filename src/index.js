@@ -1,6 +1,6 @@
-import API_URL from './config';
+import {API_URL, URL} from './config';
 
-const main = document.querySelector('main');
+const main = document.querySelector('main.posts');
 
 getPosts();
 
@@ -8,7 +8,12 @@ function elapsedDaysFrom(timestamp) {
   const fromDate = new Date(timestamp);
   const currentDate = new Date();
   const difference = currentDate - fromDate;
-  return Math.floor(difference / 1000 / 60 / 60 / 24);
+  return Math.round(difference / 1000 / 60 / 60 / 24);
+}
+
+document.querySelector('.submit').onclick = (e) => {
+  e.preventDefault();
+  location.href = URL + "/dist/submit.html";
 }
 
 function getPosts() {

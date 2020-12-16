@@ -1,3 +1,4 @@
 const API_URL = 'http://localhost:3000'
+const URL = 'http://localhost:5500'
 
-export default API_URL;
+export {API_URL, URL};

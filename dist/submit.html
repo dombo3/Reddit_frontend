@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./submit.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <img class="sprite" src="./img/astronaut.png"></img>
+    <h1 class="title">SPACE</h1>
+    <p class="subtitle">POST TO /R/SPACE</p>
+  </header>
+  <main>
+    <form class="form-post-submit">
+      <ul>
+        <li>
+          <label for="title"><span class="required">*</span>title</label>
+          <input type="text" id="title" placeholder=" " pattern="[a-zA-Z0-9\\ \\']+" required></textarea>
+          <p class="title-info hidden"><span class="required">*</span>Only use letters, numbers and space</p>
+        </li>
+        <li>
+          <label for="url">url</label>
+          <input type="url" id="url" placeholder=" ">
+          <p class="title-info hidden">Please provide a valid url</p>
+        </li>
+      </ul>
+      <button id="button-post-submit">SUBMIT</button>
+    </form>
+  </main>
+  <script src="submit.js"></script>
+</body>
+
+</html>
