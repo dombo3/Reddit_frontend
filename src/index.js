@@ -1,5 +1,5 @@
 import { API_URL, URL } from './config';
-import {elapsedDaysFrom} from './dateUtil';
+import {elapsedDaysFrom} from './util';
 import postController from './postController';
 
 render();
@@ -9,13 +9,15 @@ async function render() {
   const submitButton = document.querySelector('.submit');
 
   const posts = await postController.getAllPost();
-  const articles = posts.map(post => articleFrom(post));
-  articles.forEach(article => main.appendChild(article));
-  registerEventListenersFor(posts);
-  
+  if (posts) {
+    const articles = posts.map(post => articleFrom(post));
+    articles.forEach(article => main.appendChild(article));
+    registerEventListenersFor(posts);
+  }
+ 
   submitButton.onclick = (e) => {
     e.preventDefault();
-    location.href = URL + "/dist/submit.html";
+    location.href = URL + "/dist/edit.html";
   }
 }
 
@@ -23,7 +25,7 @@ function registerEventListenersFor(posts) {
   posts.forEach(post => {
     const article = document.querySelector(`article[data-id="${post.id}"]`);
     
-    const upVoteButton = article.querySelector(`.upvote`);
+    const upVoteButton = article.querySelector('.upvote');
     upVoteButton.addEventListener('click', (e) => {
       postController.upVote(post.id).then(post => {
           article.querySelector('.vote').innerText = post.score;
@@ -31,11 +33,19 @@ function registerEventListenersFor(posts) {
       );
     });
 
-    const downVoteButton = article.querySelector(`.downvote`);
+    const downVoteButton = article.querySelector('.downvote');
     downVoteButton.addEventListener('click', (e) => {
-       postController.downVote(post.id).then(post => 
+       postController.downVote(post.id).then(post =>
         article.querySelector('.vote').innerText = post.score);
     });
+
+    const remove = article.querySelector('.remove');
+    remove.addEventListener('click', (e) => {
+      e.preventDefault();
+      postController.delete(post.id).then(() => {
+        article.remove();
+      })
+    })
   });
 }
 
@@ -72,12 +82,12 @@ function articleFrom(post) {
   p2.textContent = `submitted ${days} days ago by ${post.author || "anonymus"}`;
 
   const a1 = document.createElement('a');
-  a1.setAttribute('class', 'link');
-  a1.setAttribute('href', '#');
+  a1.setAttribute('class', 'link modify');
+  a1.setAttribute('href', `${URL}/dist/edit.html?id=${post.id}`);
   a1.textContent = 'modify';
 
   const a2 = document.createElement('a');
-  a2.setAttribute('class', 'link');
+  a2.setAttribute('class', 'link remove');
   a2.setAttribute('href', '#');
   a2.textContent = 'remove';
 
