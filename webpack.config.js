@@ -5,6 +5,8 @@ module.exports = {
     index: './src/index.js',
     edit: './src/edit.js',
     main: './src/main.js',
+    login: './src/login.js',
+    auth: './src/auth.js'
   },
   output: {
     filename: '[name].js',

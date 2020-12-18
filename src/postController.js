@@ -3,54 +3,91 @@ import handleError from './errorHandler';
 
 export default {
 
-  getOnePost: function(id) {
-    return fetch(API_URL + `/posts/${id}`)
-      .then(response => response.json())
-      .catch(error => handleError(error));
+  getOnePost: function (id, username) {
+    return fetch(API_URL + `/posts/${id}`, {
+      headers: {
+        'Username': username,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error("error in get request");
+        }
+      })
+      // .catch(error => handleError(error));
   },
 
-  getAllPost: function() {
+  getAllPost: function () {
     return fetch(API_URL + "/posts")
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+      })
       .catch(error => handleError(error));
   },
 
-  updatePost: function(post) {
+  updatePost: function (post, username) {
     return fetch(API_URL + `/posts/${post.id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Username': username,
       },
       body: JSON.stringify(post)
-    }).then(response => response.json())
-    .catch(error => handleError(error));
+    }).then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+      .catch(error => handleError(error));
   },
 
-  createPost: function(post) {
+  createPost: function (post, username) {
     return fetch(API_URL + "/posts", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Username': username,
       },
       body: JSON.stringify(post)
-    }).then(response => response.json())
-    .catch(error => handleError(error));
+    }).then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+      .catch(error => handleError(error));
   },
 
-  upVote: function(id) {
+  upVote: function (id) {
     return fetch(API_URL + `/posts/${id}/upvote`, { method: 'PUT', })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+      })
       .catch(error => handleError(error));
   },
 
-  downVote: function(id) {
+  downVote: function (id) {
     return fetch(API_URL + `/posts/${id}/downvote`, { method: 'PUT', })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+      })
       .catch(error => handleError(error));
   },
 
-  delete: function(id) {
-    return fetch(API_URL + `/posts/${id}`, { method: 'DELETE', })
+  delete: function (id, username) {
+    return fetch(API_URL + `/posts/${id}`, {
+      method: 'DELETE', 
+      headers: {
+        'Username': username,
+      },
+    })
       .catch(error => handleError(error));
   }
 }

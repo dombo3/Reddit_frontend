@@ -4,7 +4,7 @@ body {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr minmax(500px, max-content) max-content 1fr;
-  grid-template-rows: 300px 30px 200px 1fr 20px;
+  grid-template-rows: 300px 30px 30px 200px 1fr 20px;
   grid-gap: 15px;
   background-color: rgb(238,238,238);
 }
@@ -73,6 +73,10 @@ header {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+.logout {
+  grid-column: 3;
 }
 
 /** Error **/

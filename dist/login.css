@@ -1,0 +1,75 @@
+body {
+  grid-template-columns: 20px max-content max-content 1fr;
+}
+
+main {
+  grid-column: 2;
+  grid-row: 2 / span 3;
+}
+
+/** Submit Post Form **/
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+  background-color: #fff;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
+input[type="password"],
+input[type="text"] {
+  padding: 5px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  font-family: inherit;
+}
+
+button {
+  align-self: flex-start;
+  height: 30px;
+  width: 220px;
+}
+
+.required {
+  color: red;
+}
+
+input[type="text"]:invalid:not(:placeholder-shown) + .title-info {
+  display: block;
+  transition: 0.25s;
+}
+
+input[type="password"]:invalid:not(:placeholder-shown) + .title-info {
+  display: block;
+}
+
+input[type="text"]:focus:invalid {
+  outline: 1px solid red;
+}
+
+.title-info {
+  color: rgb(180,180,180);
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}

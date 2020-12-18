@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <img class="sprite" src="./img/astronaut.png"></img>
+    <h1 class="title">SPACE</h1>
+    <p class="subtitle">LOGIN TO /R/SPACE</p>
+  </header>
+  <main>
+    <form class="form-login-submit">
+      <ul>
+        <li>
+          <label for="username"><span class="required">*</span>username</label>
+          <input type="text" id="username" placeholder=" " pattern="[a-zA-Z0-9_]+" required></textarea>
+          <p class="username-info hidden"><span class="required">*</span>Only use letters, numbers and underscore</p>
+        </li>
+        <li>
+          <label for="password">password</label>
+          <input type="password" id="password" placeholder=" ">
+          <p class="password-info hidden">Please provide a valid password</p>
+        </li>
+      </ul>
+      <button id="button-login">LOGIN</button>
+    </form>
+  </main>
+  <script src="login.js"></script>
+</body>
+
+</html>

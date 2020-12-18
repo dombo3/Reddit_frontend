@@ -52,6 +52,7 @@ article.post {
   text-decoration: none;
   color: inherit;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 /** Submit Button **/
@@ -84,4 +85,9 @@ button.submit:hover {
 
 .about .topics {
   padding: 0 20px;
+}
+
+.content-box .forbidden {
+  cursor: default;
+  opacity: 0.5;
 }

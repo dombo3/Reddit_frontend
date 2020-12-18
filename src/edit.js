@@ -2,11 +2,14 @@ import { API_URL, URL } from './config';
 import postController from './postController';
 import Post from './Post';
 import {getQueryParams} from './util';
+import Auth from './auth';
 
 const subtitle = document.querySelector('.subtitle');
 const title = document.querySelector('#title');
 const url = document.querySelector('#url');
 const submitButton = document.querySelector('#button-post-submit');
+
+/** need refact **/
 
 let state = {
   edit: false,
@@ -25,7 +28,11 @@ async function render() {
   
   if (state.edit) {
     subtitle.innerText = "EDIT POST";
-    post = await postController.getOnePost(queryParams.id);
+    /* need refact **/
+    post = await postController.getOnePost(queryParams.id, Auth.getUser()).catch(error => {
+      console.log("GOT IT");
+      location.href = URL + '/dist/index.html';
+    });
     title.value = post.title;
     url.value = post.url;
   }
@@ -43,9 +50,9 @@ function registerEventListener(post) {
       if (state.edit) {
         post.title = title.value;
         post.url = title.url;
-        p = await postController.updatePost(post);
+        p = await postController.updatePost(post, Auth.getUser());
       } else {
-        p = await postController.createPost(new Post(title.value, url.value));
+        p = await postController.createPost(new Post(title.value, url.value), Auth.getUser());
       }
 
       if (p) {

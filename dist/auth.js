@@ -1,0 +1,1 @@
+(()=>{"use strict";var t={182:(t,r,e)=>{e.d(r,{J:()=>o});const o="http://localhost:5500"}},r={};function e(o){if(r[o])return r[o].exports;var n=r[o]={exports:{}};return t[o](n,n.exports,e),n.exports}e.d=(t,r)=>{for(var o in r)e.o(r,o)&&!e.o(t,o)&&Object.defineProperty(t,o,{enumerable:!0,get:r[o]})},e.o=(t,r)=>Object.prototype.hasOwnProperty.call(t,r),e(182)})();
